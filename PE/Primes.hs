@@ -2,7 +2,7 @@ module PE.Primes (
     primes
 ) where
 
-primes = 2:3:ps [i| i <- [6,12..]]
+primes = 2:3:ps [6,12..]
 
 ps (x:xs) 
     | lxIsPrime && rxIsPrime = lx:rx:rest
