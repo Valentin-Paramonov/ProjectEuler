@@ -1,2 +1,2 @@
 # ProjectEuler
-Haskell solutions for Project Euler problems
+Haskell solutions for [Project Euler](http://projecteuler.net) problems
