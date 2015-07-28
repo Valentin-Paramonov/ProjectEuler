@@ -1,7 +1,6 @@
-fib = fib' 1 1
-fib' a b = a:fib' b (a+b)
+import PE.Math
 
 main = do
-    let indexed = zip [1..] fib
-        tdigits = takeWhile (\(_, f) -> f >= 1e9999) indexed
-    print $ fst $ head tdigits
+    let indexed = zip [1..] fibs
+        tdigits = filter (\(_, f) -> f >= 10^999) indexed
+    print . fst . head $ tdigits

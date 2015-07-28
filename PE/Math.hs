@@ -1,4 +1,6 @@
-module PE.Math where
+module PE.Math(
+    fact, c, pow, fibs
+) where
 
 import Data.List
 
@@ -40,3 +42,5 @@ pow :: (Integral a) => a -> a -> a
 pow _ 0 = 1
 pow n k = foldl1' (*) $ replicate' n k
 
+fibs = fib 1 1
+    where fib a b = a:fib b (a+b)
