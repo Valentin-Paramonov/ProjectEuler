@@ -1,28 +1,15 @@
+import PE.Primes
 
-					-- Problem 5 --
-
-smallestNum xs = 
-	sN (filter isPrime xs) (filter (\x -> not $ isPrime x) xs)
-
---isPrime 2 = True
---isPrime x
---	| x < 2 = False
---	| x `mod` 2 == 0 = False
---	| otherwise = isPrime' x 3
-
---isPrime' x n
---	| x <= n = True
---	| x `mod` n == 0 = False
---	| otherwise = isPrime' x (n+2)
-
-sN ps [] = foldl (\acc x -> acc*x) 1 ps
-sN ps (n:ns)
-	| ok == 1 = sN ps ns
-	| otherwise = sN (ps ++ [ok]) ns
-	where ok = checkGood ps n
-
-checkGood _ 1 = 1
-checkGood [] n = n
-checkGood (p:ps) n
-	| n `mod` p == 0 = checkGood ps (n `div` p)
-	| otherwise = checkGood ps n
+main = do
+	print . product . foldl primeOrNotCovered ps $ [1..n]
+	where
+		primeOrNotCovered xs x
+			| isPrime x = xs
+			| otherwise = foldl notCovered x xs:xs
+		notCovered 1 _ = 1
+		notCovered x p
+			| x `mod` p == 0 = x `div` p
+			| otherwise = x
+		isPrime x = x `elem` ps
+		ps = takeWhile (<=n) primes
+		n = 20
