@@ -1,7 +1,5 @@
-
-					-- Problem 6 --
-
-diffSumSquaredAndSumSquares x =
-	truncate $
-	sum [1..x] ** 2 -
-	foldl (\acc x -> acc + (x**2)) 1 [2..x]
+main = print $ sumSquared - sumOfSqures
+    where
+        sumSquared = sum [1..n] ^ 2
+        sumOfSqures = sum . map (^2) $ [1..n]
+        n = 100
