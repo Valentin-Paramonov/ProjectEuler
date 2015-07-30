@@ -1,5 +1,3 @@
+import PE.Primes
 
-					-- Problem 7 --
-
--- :l pe003.hs
---	last $ prime 10001
+main = print $ primes !! 10000
