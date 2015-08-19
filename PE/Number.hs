@@ -2,8 +2,8 @@ module PE.Number where
 
 import Data.Char
 
-toNumber :: [Int] -> Integer
+toNumber :: (Integral a, Read a) => [Int] -> a
 toNumber = read . map intToDigit
 
-toDigits :: Integer -> [Int]
+toDigits :: (Integral a, Show a) => a -> [Int]
 toDigits = map digitToInt . show
