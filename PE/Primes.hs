@@ -22,6 +22,7 @@ isPrime (p:ps) n
     | mod n p == 0 = False
     | otherwise = isPrime ps n
 
+-- Proper Divisor Sum
 pds n = primeProd n - n
 
 primeProd n = product . map (\(f,p) -> 1 + (sum $ map (f^) [1..p])) $ pFactors n
