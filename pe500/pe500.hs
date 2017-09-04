@@ -1,23 +1,27 @@
 import PE.Primes
+import Data.Heap as Heap
+import GHC.List as List
 
-ps = take 500500 primes
-prime n = ps !! n
+f k = 
+    let 
+        ps = List.take k primes
+    in
+        f' k 1 (Heap.fromList ps :: MinHeap Integer)
 
-f i 0 = 1
-f i d =
-    minimum $ map (\(c,n) -> pi^(c-1) * (f (i + 1) (d - n))) candidates
-    where
-        k = d
-        p = prime $ k + i - 1 - 1
-        pi = prime $ i - 1
-        m = floor (log (fromIntegral p) / log (fromIntegral pi))
-        powersOf2 = [(2^a,a+1) | a <- [1..]]
-        candidates = 
-            let 
-                cs = takeWhile ((<= m) . fst) powersOf2
-            in
-                if cs /= [] then map (\(c,n) -> (2*c,n)) cs else [(2,1)] 
+f' 0 n _ = n
+f' k n divisors =
+    let 
+        (e, newHeap) = pop divisors
+    in
+        f' (k - 1) (n*e) (Heap.insert (e^2) newHeap) 
+
+pop heap =
+    let 
+        [e] = Heap.take 1 heap
+        newHeap = Heap.drop 1 heap
+    in 
+        (e, newHeap)
 
 main = do
-    print $ f 1 500500 `mod` 500500507
+    print $ f 500500 `mod` 500500507
 
